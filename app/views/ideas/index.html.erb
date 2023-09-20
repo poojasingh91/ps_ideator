@@ -1,19 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Bootstrap Example</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-</head>
-<body>
+<!-- Button trigger modal -->
+<br>
+<br>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Add Idea
+</button>
+<br>
+<br>
 
-<div class="container">
-  <h1>My First Bootstrap Page</h1>
-  <p>This is some text.</p>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Idea</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <%= simple_form_for Idea.new do |f| %>
+      <div class="modal-body">
+        <%= f.input :description %>
+        <%= f.input :author %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <%= f.submit 'Submit', class: 'btn btn-primary' %>
+      </div>
+      <% end %>
+    </div>
+  </div>
 </div>
 
-</body>
-</html>
+<% @ideas.each do |idea| %>
+  <div class="card">
+    <div class="card-body">
+      <blockquote class="blockquote mb-0">
+        <p><%= idea.description %></p>
+        <footer class="blockquote-footer">by <%= idea.author %></footer>
+      </blockquote>
+    </div>
+  </div>
+<% end %>
