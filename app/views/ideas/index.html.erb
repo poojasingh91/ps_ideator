@@ -38,6 +38,10 @@
         <p><%= idea.description %></p>
         <footer class="blockquote-footer">by <%= idea.author %></footer>
       </blockquote>
+      <div class="btn-group" role="group">
+      <%= link_to 'Delete', idea_path(idea), class: 'btn btn-sm btn-danger', data: {"turbo-confirm": "Are you sure?", "turbo-method": :delete}%>
+      <%= link_to 'Revise', edit_idea_path(idea), class: 'btn btn-sm btn-success' %>
+      </div>
     </div>
   </div>
 <% end %>
